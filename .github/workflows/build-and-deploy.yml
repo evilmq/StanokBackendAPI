@@ -18,6 +18,5 @@ jobs:
         run: cd GalleryApp; dotnet build --configuration Release
       - name: Publish
         run: cd GalleryApp; dotnet publish -c Release -o out
-      - name: 
       - name: Deploy using Pages
         uses: actions/deploy-pages@v2
