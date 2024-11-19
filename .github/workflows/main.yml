@@ -1,0 +1,27 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.0  # Замените на вашу версию .NET
+      - name: Build
+        run: dotnet build --configuration Release
+      - name: Publish
+        run: dotnet publish -c Release -o out
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+        with:
+          skip-publish: true # Если вам нужно обойти существующую публикацию
