@@ -21,6 +21,23 @@ namespace GalleryApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("GalleryApp.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("GalleryApp.Models.Gallery", b =>
                 {
                     b.Property<int>("GalleryId")
@@ -112,11 +129,16 @@ namespace GalleryApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagId"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TagName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TagId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Tags");
                 });
@@ -160,6 +182,22 @@ namespace GalleryApp.Migrations
                     b.Navigation("GalleryItem");
 
                     b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("GalleryApp.Models.Tag", b =>
+                {
+                    b.HasOne("GalleryApp.Models.Category", "Category")
+                        .WithMany("Tags")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("GalleryApp.Models.Category", b =>
+                {
+                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("GalleryApp.Models.Gallery", b =>

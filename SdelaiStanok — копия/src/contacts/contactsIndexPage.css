@@ -1,0 +1,90 @@
+@font-face {
+    font-family: "TildaSans";
+    src: local("TildaSans"),
+      url("https://static.tildacdn.com/fonts/tildasans/TildaSans-VF.woff2")
+        format("woff2-variations"),
+      url("SdelaiStanol.client/src/fonts/TildaSans-VF.woff");
+  }
+  
+  div{
+    -border: 1px red solid;
+  }
+  
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .padding_1200 {
+    width: 1200px;
+    margin: auto;
+  }
+  
+  body{
+    background-color: #0d161d;
+    color: #fafaff;
+    font-family: TildaSans;
+  }
+  
+  .map{
+    margin-bottom: 20px;
+  }
+  
+  .contacts{
+    width: 100%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .contacts .header{
+    font-size: 50px;
+    text-align: center;
+    margin: 20px;
+    font-weight: 600;
+  }
+  
+  .contacts .top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .contacts .bot{
+    margin: auto;
+  }
+  
+  .contact-card{
+    width: 550px;
+    height: 220px;
+    color:#fafaff;
+    background-color: #394e61;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 40px;
+    border-radius: 20px;
+    margin: 20px;
+  }
+  
+  .contact-card p{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .contacts .tel-mail{
+    display: flex;
+    flex-direction: column;
+  
+  }
+  
+  .contacts .tel-mail a{
+    color: #fafaff;
+    text-decoration: none;
+    font-size: 28px;
+  }
+  

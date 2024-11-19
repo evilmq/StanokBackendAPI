@@ -14,7 +14,8 @@ namespace GalleryApp.Data
         public DbSet<GalleryItem> GalleryItems { get; set; }
         public DbSet<ItemImage> ItemImages { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<ItemTags> ItemTags { get; set; } // Добавлено
+        public DbSet<ItemTags> ItemTags { get; set; }
+        public DbSet<Category> Categories { get; set; } // Добавлено
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +31,12 @@ namespace GalleryApp.Data
                 .HasOne(it => it.Tag)
                 .WithMany(t => t.GalleryItems)
                 .HasForeignKey(it => it.TagId);
+
+            // Настройка связи между Tag и Category
+            modelBuilder.Entity<Tag>()
+                .HasOne(t => t.Category)
+                .WithMany(c => c.Tags)
+                .HasForeignKey(t => t.CategoryId);
         }
     }
 }

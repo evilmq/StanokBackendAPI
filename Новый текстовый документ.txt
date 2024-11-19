@@ -1,0 +1,2 @@
+https://localhost:7093
+https://localhost:7093/api/Gallery

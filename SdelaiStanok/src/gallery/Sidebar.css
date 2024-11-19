@@ -1,0 +1,246 @@
+.sidebar-toggle {
+    display: none;
+}
+
+@media (min-width:1200px) {
+
+
+
+    .sidebar-content {
+        width: 270px;
+        height: auto;
+        padding: 15px;
+        background-color: #16242f;
+        border-radius: 15px;
+    }
+
+    .sidebar h3 {
+        color: #ec631c;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .search input {
+        width: 235px;
+        height: 30px;
+        border: #ec631c 2px solid;
+        border-radius: 5px;
+        background-color: #16242f;
+        color: #fafaff;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .categ {
+        margin-top: 15px;
+    }
+
+    .categ-item {
+
+        margin-left: 10px;
+    }
+
+    .categ-header {
+        margin: 10px 0 10px 0;
+        font-size: 23px;
+        color: #ec631c;
+        background-color: #16242f;
+        border: 0px;
+        font-weight: 500;
+    }
+
+    .side-line {
+        width: 30px;
+        height: 4px;
+        border-radius: 2px;
+        background-color: #ec631c;
+        top: 30px;
+        left: -40px;
+        margin-top: calc(20px / 1.3);
+        position: relative;
+    }
+
+    .tags {
+        font-size: 16px;
+    }
+
+    .checkBox {
+        display: none;
+
+    }
+
+    .checkBox+label {
+        width: auto;
+        position: relative;
+        margin-left: 20px;
+        height: auto;
+
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+    }
+
+    .tag span {
+        margin: 0;
+        padding: 0;
+    }
+
+    .tag label {
+        display: block;
+        width: auto;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .tag-name {
+        width: 200px;
+
+
+    }
+
+    .checkBox+label::before {
+        position: absolute;
+        content: '';
+        left: -25px;
+        top: 0;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #ec631c;
+        border-radius: 5px;
+        background-color: #16242f;
+    }
+
+    .checkBox:checked+label::before {
+        border-color: #fafafa;
+        background-image: url('../assets/check.svg');
+        background-size: contain;
+    }
+
+    .tags-count {
+
+        color: #374956;
+    }
+
+}
+
+@media (max-width:1200px) {
+    .sidebar-content {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        background-color: #16242f;
+        border-radius: 15px;
+    }
+
+    .sidebar h3 {
+        color: #ec631c;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .search input {
+        width: 235px;
+        height: 30px;
+        border: #ec631c 2px solid;
+        border-radius: 5px;
+        background-color: #16242f;
+        color: #fafaff;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .categ {
+        margin-top: 15px;
+    }
+
+    .categ-item {
+
+        margin-left: 10px;
+    }
+
+    .categ-header {
+        margin: 10px 0 10px 0;
+        font-size: 23px;
+        color: #ec631c;
+        background-color: #16242f;
+        border: 0px;
+        font-weight: 500;
+    }
+
+    .side-line {
+        width: 30px;
+        height: 4px;
+        border-radius: 2px;
+        background-color: #ec631c;
+        top: 30px;
+        left: -40px;
+        margin-top: calc(20px / 1.3);
+        position: relative;
+    }
+
+    .tags {
+        font-size: 16px;
+    }
+
+    .checkBox {
+        display: none;
+
+    }
+
+    .checkBox+label {
+        width: auto;
+        position: relative;
+        margin-left: 20px;
+        height: auto;
+
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+    }
+
+    .tag span {
+        margin: 0;
+        padding: 0;
+    }
+
+    .tag label {
+        display: block;
+        width: auto;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .tag-name {
+        width: 200px;
+
+
+    }
+
+    .checkBox+label::before {
+        position: absolute;
+        content: '';
+        left: -25px;
+        top: 0;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #ec631c;
+        border-radius: 5px;
+        background-color: #16242f;
+    }
+
+    .checkBox:checked+label::before {
+        border-color: #fafafa;
+        background-image: url('../assets/check.svg');
+        background-size: contain;
+    }
+
+    .tags-count {
+
+        color: #374956;
+    }
+
+}

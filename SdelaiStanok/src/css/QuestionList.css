@@ -1,0 +1,71 @@
+#question-list {
+    height: 100%;
+}
+
+.question-list-item {
+    width: 100%;
+    height: auto;
+    background-color: #0d161d;
+    border: 0;
+}
+
+.preview .question-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.question-list-item .list-item-header {
+    height: auto;
+    font-size: 21px;
+    font-weight: 500;
+    text-align: left;
+    color: #fafaff;
+    margin-top: 15px;
+}
+
+#question-list .item {
+    border-top: #5c5c5c 2px solid;
+    margin: 15px 0 15px 0
+}
+
+
+
+.question-list-item .advance-image img {
+    width: 30px;
+    height: 30px;
+    border: 3px #0d161d solid;
+}
+
+.question-list-item .advance-image img:hover {
+    width: 30px;
+    height: 30px;
+    background-color: #fafaff;
+    border: 3px #fafaff solid;
+    transition: 0.3s;
+
+    border-radius: 100%;
+}
+
+.advance-desc .desc {}
+
+.advance-desc p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+    font-weight: 200;
+}
+
+.advance-desc {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease-in-out;
+    /* Добавляем плавное изменение высоты */
+}
+
+.advance-desc.open {
+    height: auto;
+    /* Когда isOpen = true, высота устанавливается автоматически */
+}

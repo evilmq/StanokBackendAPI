@@ -1,0 +1,37 @@
+.gallery-preview-body {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: hidden; /* Скрываем элементы, выходящие за пределы контейнера */
+  }
+  
+  .gallery-preview-card {
+    width: 290px;
+    height: 290px;
+    margin: 20px; /* Уменьшаем отступ по горизонтали */
+    transition: 0.3s ease-in-out;
+    justify-content: center; /* Центрируем картинку по горизонтали */
+    align-items: center; /* Центрируем картинку по вертикали */
+    border-radius: 20px;
+    background: radial-gradient(rgba(13, 22, 29, 80%), rgba(0, 0, 0, 0%)),
+      linear-gradient(rgba(236, 99, 28, 20%), rgba(107, 129, 140, 90%));
+    position: relative;
+    overflow: hidden; /* Скрываем выходящие за пределы элементы */
+  }
+  
+  .gallery-preview-card img {
+    width: 260px;
+    height: 260px;
+    transition: 0.2s ease-in-out;
+    margin-left: 15px;
+    margin-top: 15px;
+  }
+  
+  .gallery-preview-card:hover {
+    transform: scale(1.1);
+  }
+  
+  .gallery-preview-card:hover img {
+    transform: scale(1.1);
+  }

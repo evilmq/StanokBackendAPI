@@ -1,0 +1,110 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #fafaff;
+    overflow-y: auto;
+  }
+  
+  .popup-content {
+    display: flex;
+    flex-direction: row;
+    text-wrap: wrap;
+    max-width: 1200px;
+    max-height: 1500px;
+    background-color: #16242f;
+    padding: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 40px;
+    color: #fafaff;
+  }
+  
+  .popup-images-container {
+    overflow-x: auto;
+    margin-left: 30px;
+    max-height: 600px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent images from wrapping */
+    border-radius: 10px;
+  }
+
+  .popup-images{
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popup-images img{
+    object-fit: cover;
+  }
+
+  .popup-name p{
+
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 45px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .popup-tags{
+    color: #9ca3aa;
+    margin-bottom: 10px;
+  }
+
+  .popup-description {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  /* ... other styles ... */
+
+.fullscreen-image-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden; /* This is the key! */
+  }
+  
+.fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    transform-origin: center; /* Zoom from the center */
+    image-rendering: pixelated;
+}
+
+
+.fullscreen-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}

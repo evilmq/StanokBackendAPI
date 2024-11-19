@@ -1,11 +1,14 @@
 ﻿using GalleryApp.Data;
 using GalleryApp.Models;
+using GalleryApp.Models.Dtos;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 
 namespace GalleryApp.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class GalleryController : ControllerBase
@@ -20,13 +23,34 @@ namespace GalleryApp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GalleryItem>>> GetGalleryItems()
+        public async Task<ActionResult<IEnumerable<GalleryItemDto>>> GetGalleryItems()
         {
-            return await _context.GalleryItems
+            var galleryItems = await _context.GalleryItems
                 .Include(i => i.ItemImages)
                 .Include(i => i.Tags)
                 .ThenInclude(it => it.Tag)
+                .ThenInclude(t => t.Category) // Добавлено для загрузки категории
                 .ToListAsync();
+
+            // ... (остальной код)
+
+            var galleryItemDtos = galleryItems.Select(gi => new GalleryItemDto
+            {
+                ItemId = gi.ItemId,
+                GalleryId = gi.GalleryId,
+                Name = gi.Name,
+                Description = gi.Description,
+                Images = gi.ItemImages.Select(ii => ii.ImagePath).ToList(),
+                Tags = gi.Tags.Select(it => new TagDto
+                {
+                    TagName = it.Tag.TagName,
+                    CategoryName = it.Tag.Category.CategoryName
+                }).ToList() // Теперь Tags - это List<TagDto>
+            }).ToList();
+
+            // ... (остальной код)
+
+            return Ok(galleryItemDtos);
         }
 
         [HttpPost]
@@ -183,14 +207,30 @@ namespace GalleryApp.Controllers
                             var tagsElement = xml.Root?.Element("Tags");
                             if (tagsElement != null)
                             {
-                                var tagNames = tagsElement.Value.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim());
+                                var tagNodes = tagsElement.Elements("Tag");
 
-                                foreach (var tagName in tagNames)
+                                foreach (var tagNode in tagNodes)
                                 {
+                                    var tagName = tagNode.Attribute("Name")?.Value;
+                                    var categoryName = tagNode.Attribute("Category")?.Value;
+
+                                    if (string.IsNullOrEmpty(tagName))
+                                    {
+                                        continue;
+                                    }
+
+                                    var category = await _context.Categories.FirstOrDefaultAsync(c => c.CategoryName == categoryName);
+                                    if (category == null)
+                                    {
+                                        category = new Category { CategoryName = categoryName };
+                                        _context.Categories.Add(category);
+                                        await _context.SaveChangesAsync();
+                                    }
+
                                     var tag = await _context.Tags.FirstOrDefaultAsync(t => t.TagName == tagName);
                                     if (tag == null)
                                     {
-                                        tag = new Tag { TagName = tagName };
+                                        tag = new Tag { TagName = tagName, CategoryId = category.CategoryId };
                                         _context.Tags.Add(tag);
                                         await _context.SaveChangesAsync();
                                     }
@@ -202,12 +242,10 @@ namespace GalleryApp.Controllers
                         catch (Exception ex)
                         {
                             Console.WriteLine($"Ошибка чтения XML: {ex.Message}");
-                            // Продолжаем обработку других файлов, или можно вернуть ошибку, если это критично
                         }
                     }
 
                     var imageFiles = Directory.GetFiles(itemDirectory, "*.jpg");
-                    // Выбор главного изображения
                     string mainImagePath = null;
                     if (imageFiles.Length > 0)
                     {
@@ -224,7 +262,7 @@ namespace GalleryApp.Controllers
                         _context.ItemImages.Add(new ItemImage { ItemId = galleryItem.ItemId, ImagePath = relativePath, GalleryItem = galleryItem });
                     }
 
-                    await _context.SaveChangesAsync(); // Сохраняем изменения после каждого элемента
+                    await _context.SaveChangesAsync();
                 }
             }
 

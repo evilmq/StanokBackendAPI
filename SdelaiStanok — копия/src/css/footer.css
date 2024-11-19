@@ -1,0 +1,20 @@
+.copyright{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: -24px;
+    background-color: #0e0e0e;
+}
+
+.copyright p{
+    text-align: center;
+    color: #99999c;
+}
+
+.copyright p a{
+    text-decoration: none;
+    color: #fafaff;
+}
+
+.copyright p a:hover{
+    color: #ec631c;
+}

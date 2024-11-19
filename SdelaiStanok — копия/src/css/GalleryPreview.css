@@ -1,0 +1,15 @@
+.gallery-preview-body {
+  height: 950px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-preview-card {
+  width: 290px;
+  height: 290px;
+  margin: auto;
+  margin-top: 0;
+  border-radius: 20px;
+  background: radial-gradient(rgba(13, 22, 29, 80%), rgba(0, 0, 0, 0%)),
+    linear-gradient(rgba(236, 99, 28, 20%), rgba(107, 129, 140, 90%));
+}
