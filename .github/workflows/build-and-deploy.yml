@@ -4,19 +4,24 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build with dotnet
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.0' # Укажите версию .NET
+          dotnet-version: 8.0.0  # Замените на вашу версию .NET
       - name: Build
-        run: cd GalleryApp; dotnet build --configuration Release
+        run: dotnet build --configuration Release
       - name: Publish
-        run: cd GalleryApp; dotnet publish -c Release -o out
-      - name: Deploy using Pages
+        run: dotnet publish -c Release -o out
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
+        with:
+          skip-publish: true # Если вам нужно обойти существующую публикацию
